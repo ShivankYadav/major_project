@@ -1,0 +1,4 @@
+Flask
+Flask-RESTful
+Werkzeug
+flask-cors
