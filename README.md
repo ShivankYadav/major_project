@@ -8,6 +8,7 @@ This repository contains contents of major project 2021
   3. If the container is already created, use the below command to get it up and running:
         1. ```docker container start mrcnn_flask```
         2. ```docker container exec -it mrcnn_flask /bin/bash```
+        
   **Commands to run inside the container**
   (Everytime commands)
   1. ```cd /host```
