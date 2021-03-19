@@ -4,3 +4,10 @@
 3) If the container is already created, use the below command to get it up and running
     -> docker container start mrcnn_flask
     -> docker container exec -it mrcnn_flask /bin/bash
+
+4) Commands to run inside the container
+    (Everytime command)
+    -> cd /host
+
+    (If created the container for the first time)
+    pip3 install -r requirements.txt
