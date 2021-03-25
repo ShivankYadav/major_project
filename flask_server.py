@@ -16,11 +16,9 @@ import matplotlib.pyplot as plt
 
 import cv2
 import mrcnn.model as modellib
-from mrcnn import visualize
-
-from mrcnnn import utils
+from mrcnnn import utils, cus_viz
 from mrcnnn.config import Config
-
+import tensorflow as tf
 
 
 ########## Init class labels for MASK RCNN #############
@@ -94,24 +92,20 @@ config.display()
 
 ############ Load MASK RCNN ###########################
 # Create model object in inference mode.
-model = modellib.MaskRCNN(mode="inference", model_dir=MODEL_DIR, config=config)
-# Load weights trained on MS-COCO
-model.load_weights(COCO_MODEL_PATH, by_name=True)
+
+def init_model_and_predict(path):
+    global config
+    model = modellib.MaskRCNN(mode="inference", model_dir=MODEL_DIR, config=config)
+    # Load weights trained on MS-COCO
+    model.load_weights(COCO_MODEL_PATH, by_name=True)
+    image = skimage.io.imread(path)
+    results = model.detect([image], verbose=1)
+    tf.keras.backend.clear_session()
+
+    return (image, results[0])
 
 
-########### display code ############################
-# Load a random image from the images folder
-file_names = next(os.walk(IMAGE_DIR))[2]
-image = skimage.io.imread(os.path.join(IMAGE_DIR, random.choice(file_names)))
 
-# Run detection
-results = model.detect([image], verbose=1)
-
-# Visualize results
-r = results[0]
-plt.imshow(image)
-visualize.display_instances(image, r['rois'], r['masks'], r['class_ids'], 
-                            class_names, r['scores'])
 
 
 
@@ -124,18 +118,20 @@ class File(Resource):
     """
     Resource endpoint to handle file sharing. Will be used to get image from client and show Inference.
     """
-
     def post(self, name):
         # extracts the file from a POST request and saves it.
         f = request.files['file']
-        filename = secure_filename(f.filename)
-        
+        #filename = secure_filename(f.filename)
+        filename = "input.jpg"
         save_path = os.path.join(os.getcwd(), filename)
         f.save(save_path)
-        with open(save_path, 'r') as f_n:
-            file_content = f_n.read()
+     
+        image, r = init_model_and_predict(save_path)
         
-        return file_content, 201
+        print(type(image), image.shape)
+        
+        cus_viz.display_instances(image, r['rois'], r['masks'], r['class_ids'], class_names, r['scores'])
+        return "file processed and saved.", 201
     
 api.add_resource(File, '/file/<string:name>')
 
