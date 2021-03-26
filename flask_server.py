@@ -90,17 +90,26 @@ config = InferenceConfig()
 config.display()
 
 
+# Initialize a shared session for keras / tensorflow operations.
+session = sess = tf.compat.v1.Session()
+init = tf.global_variables_initializer()
+session.run(init)
+
 ############ Load MASK RCNN ###########################
 # Create model object in inference mode.
 
-def init_model_and_predict(path):
-    global config
-    model = modellib.MaskRCNN(mode="inference", model_dir=MODEL_DIR, config=config)
-    # Load weights trained on MS-COCO
-    model.load_weights(COCO_MODEL_PATH, by_name=True)
+
+
+model = modellib.MaskRCNN(mode="inference", model_dir=MODEL_DIR, config=config)
+model.load_weights(COCO_MODEL_PATH, by_name=True)
+model.keras_model._make_predict_function()
+
+
+def predict(path):
+    global model
+    
     image = skimage.io.imread(path)
     results = model.detect([image], verbose=1)
-    tf.keras.backend.clear_session()
 
     return (image, results[0])
 
@@ -126,7 +135,7 @@ class File(Resource):
         save_path = os.path.join(os.getcwd(), filename)
         f.save(save_path)
      
-        image, r = init_model_and_predict(save_path)
+        image, r = predict(save_path)
         
         print(type(image), image.shape)
         
