@@ -1,6 +1,6 @@
 ################### server libs ########################
 
-from flask import Flask, request
+from flask import Flask, request, send_file
 from flask_restful import Resource, Api 
 from werkzeug.utils import secure_filename
 
@@ -140,8 +140,10 @@ class File(Resource):
         print(type(image), image.shape)
         
         cus_viz.display_instances(image, r['rois'], r['masks'], r['class_ids'], class_names, r['scores'])
-        return "file processed and saved.", 201
-    
+        #return "file processed and saved.", 201
+        return send_file('output.jpg', attachment_filename='output.jpg', as_attachment=True)
+
+
 api.add_resource(File, '/file/<string:name>')
 
 
