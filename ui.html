@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>UI</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/footer.css" />
+    <script type="text/javascript">
+      function HandleBrowseClick(hidden_input_image)
+      {
+          var fileinputElement = document.getElementById(hidden_input_image);
+          fileinputElement.click();
+      }     
+      </script>
+  </head>
+  <body>
+    <div id="nav-bar">
+      <nav class="navbar navbar-fixed-top">
+        <div class="container-fluid" style="background-color: #8373ce;">
+          <ul class="nav navbar-nav navbar-left">
+            <li style="margin:3% auto"><b id="nav"  style="font-size:24px;">COMPUTER VISION</b></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a id="nav" href="contact.html">CONTACT US</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <div id="logobar">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-6">
+          </div>
+        </div>
+      </div>
+      <br>
+      <center><h1 style="color:#3d0066; ">IMAGE SEGMENTATION</h1></center>
+      <hr>
+    </div>
+
+    <div id="login-box">
+      <div class="left-box">
+        <form  action="http://0.0.0.0:5000/file/my_file" method="post" enctype="multipart/form-data">
+          <label for="file" style="font-size: 20px;margin-top:150px">Upload an image</label>
+          </br>
+          </br>
+          <!--<img id="image-preview"  style="height:100px; width:100px;"  src="" > -->
+          <input type="file"  id="file" name="file" accept="image/*" onchange="document.getElementById('image-preview').src = window.URL.createObjectURL(this.files[0])" required>      
+          <br />
+          <center><button
+            style="
+              height: 30px;
+              width: 100px;
+              border-radius: 15px;
+              background-color: #8373ce;  
+              margin-top: 180px;     
+            "
+          >
+          <text style="font-size: 18px; color: white;">Upload</text>
+          </button></center>
+        </form>
+      </div>
+     <div class="right-box"> 
+        <div>
+        <label for="image-preview" style="font-size: 21px;margin-top:140px; color:white">Image preview</label> <br><br>
+        <img id="image-preview"  style="height:300px; width:300px;" src="" alt="Image preview">  
+       </div>
+    </div>
+    </div>   
+    <div id="footer">
+        <div class="w3hubs-footer">       
+            <div class="w3hubs-icon">
+                <ul>
+                    <li><a href="#" target="black"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="#" target="black"><i class="fa fa-google-plus"></i></a></li>
+                    <li><a href="#" target="black"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="#" target="black"><i class="fa fa-instagram"></i></a></li>
+                    <li><a href="#" target="black"><i class="fa fa-youtube-play"></i></a></li>
+                </ul>
+            </div>
+            <div class="w3hubs-nav">
+                <ul>                   
+                    <li class="p1"><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>         
+      </div> 
+      <div class="footer-end">
+            <p><b>Copyright 2019-2021-  All rights reserved </b></p>
+      </div>
+  </div>
+  </body>
+</html>
