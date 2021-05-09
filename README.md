@@ -16,3 +16,6 @@ This repository contains contents of major project 2021
   (Only to be run If created the container for the first time)
   1. ```pip3 install -r requirements.txt```
   2. ```python3 flask_server.py```
+  
+  **To run the project**
+  Simply open UI.html and you would be good to go.
