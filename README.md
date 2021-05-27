@@ -19,4 +19,4 @@ This repository contains contents of major project 2021
   2. ```python3 flask_server.py```
   
   **To run the project**
-  Simply open UI.html and you would be good to go.
+  Simply open UI.html and you would be good to go. To close the server, open the terminal window and press Ctrl + C. After that you can enter ```exit``` to leave the root instance.
