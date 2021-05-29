@@ -1,6 +1,9 @@
 # Major_project
 This repository contains contents of major project 2021
 
+## Prerequisites
+Ubuntu OS. LTS version 18 is preferred but runs on any version. Docker should be installed on ubuntu using [this](https://docs.docker.com/engine/install/ubuntu/). It is recommended to follow [post-installation steps](https://docs.docker.com/engine/install/linux-postinstall/) of docker
+
 ## Steps to run
   **Docker Commands**
   1. Build the image from dockerfile using ```docker pull cudachen/mask-rcnn-docker```
